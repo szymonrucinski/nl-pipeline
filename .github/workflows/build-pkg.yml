@@ -9,7 +9,6 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: api
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python 3.9
@@ -22,6 +21,6 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install pipenv
       - name: Build package
-          sh build_pkg.sh
+        run: sh build_pkg.sh
       - name: Build package
-          pipenv run python getting_started.py 
+        run: pipenv run python getting_started.py 
