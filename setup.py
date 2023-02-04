@@ -19,7 +19,14 @@ setup(
     long_description_content_type="text/markdown",
     long_description=long_description,
     packages=find_packages(),
-    install_requires=["scikit-learn", "spacy", "nltk", "pandas", "coloredlogs"],
+    install_requires=[
+        "scikit-learn",
+        "spacy",
+        "nltk",
+        "pandas",
+        "coloredlogs" "spacy",
+        "en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.0.0/en_core_web_sm-2.0.0.tar.gz",
+    ],
     keywords=["python", "stream", "sockets"],
     classifiers=[
         "Intended Audience :: Developers",
