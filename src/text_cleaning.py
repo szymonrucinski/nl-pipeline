@@ -1,13 +1,11 @@
-from pyexpat import features
-from sklearn.base import BaseEstimator, TransformerMixin
 import pandas as pd
 import spacy
-import spacy
+import coloredlogs, logging
+
 from tqdm import tqdm
 from spacy.lang.en.examples import sentences
-import nltk
 from nltk.corpus import stopwords
-import coloredlogs, logging
+from sklearn.base import BaseEstimator, TransformerMixin
 
 coloredlogs.install()
 logger = logging.getLogger("text_cleaning.py")
@@ -87,7 +85,7 @@ class RemoveHTMLTags(BaseEstimator, TransformerMixin):
 
 
 class RemovePunctuation(BaseEstimator, TransformerMixin):
-    """Remove punctuation from the text using regex."""
+    """Remove unnecessary code, like log statements and unused variables. Leave the rest of the code the same."""
 
     def __init__(self, columns):
         self.columns = columns
@@ -99,7 +97,9 @@ class RemovePunctuation(BaseEstimator, TransformerMixin):
         preproc_data = X.copy()
         for column in preproc_data[self.columns]:
             if preproc_data[column].dtype in ["object", "str"]:
-                preproc_data[column].str.replace(r"[^A-Za-z ]+", "", regex=True)
+                preproc_data[column] = preproc_data[column].str.replace(
+                    r"[^A-Za-z ]+", "", regex=True
+                )
         return preproc_data
 
 
@@ -131,7 +131,7 @@ class Lemmatize(BaseEstimator, TransformerMixin):
     def transform(self, X):
         preproc_data = X.copy()
         lemmatized_sentences = []
-        for column in tqdm(preproc_data):
+        for column in preproc_data:
             if preproc_data[column].dtype in ["object", "str"]:
                 for sentence in preproc_data[column].values:
                     x = self.lemmatizer(sentence)

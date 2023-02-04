@@ -1,9 +1,10 @@
 import pandas as pd
 import nltk
 from sklearn.compose import ColumnTransformer
-from utils import download_dataset
+from src.utils import download_dataset
 from sklearn.pipeline import Pipeline
-from text_cleaning import (
+
+from pippi.text_cleaning import (
     TransformLettersSize,
     RemoveStopWords,
     Lemmatize,
