@@ -22,5 +22,5 @@ jobs:
           python -m pip install pipenv
       - name: Build package
         run: sh build_pkg.sh
-      - name: Build package
+      - name: Run getting_started.py
         run: pipenv run python getting_started.py 
