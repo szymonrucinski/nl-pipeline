@@ -1,5 +1,4 @@
-name: BUILD-PKG
-
+name: build-pkg
 on:
   push:
     branches-ignore:
