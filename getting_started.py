@@ -13,7 +13,6 @@ from pippi.text_cleaning import (
 )
 import coloredlogs, logging
 
-nltk.download("stopwords")
 coloredlogs.install()
 logger = logging.getLogger("main.py")
 

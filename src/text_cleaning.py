@@ -1,12 +1,13 @@
 import pandas as pd
 import spacy
 import coloredlogs, logging
-
+import nltk
 from tqdm import tqdm
 from spacy.lang.en.examples import sentences
 from nltk.corpus import stopwords
 from sklearn.base import BaseEstimator, TransformerMixin
 
+nltk.download("stopwords")
 coloredlogs.install()
 logger = logging.getLogger("text_cleaning.py")
 
