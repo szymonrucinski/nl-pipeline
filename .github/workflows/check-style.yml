@@ -20,5 +20,5 @@ jobs:
           pipenv install -r requirements.txt
       - name: Test Code Style
         run: |
-          ruff .
-          black .
+          pipenv run ruff .
+          pipenv run black .
