@@ -5,3 +5,5 @@ from pippi.text_cleaning import (
     RemovePunctuation,
     RemoveHTMLTags,
 )
+
+from pippi.utils import download_dataset
