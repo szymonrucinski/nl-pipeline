@@ -23,7 +23,8 @@ jobs:
       - name: Build package
         run: |
           pipenv install
-          sh build_pkg.sh
+          pipenv run python setup.py sdist bdist_wheel
+          pipenv run pip install ./dist/pippi-0.0.1-py3-none-any.whl
           pipenv run pip install --upgrade build
 
       - name: Run getting_started.py
