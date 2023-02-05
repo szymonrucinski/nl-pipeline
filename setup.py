@@ -12,7 +12,7 @@ DESCRIPTION = "A simple package to create elegant nlp pipelines using sklearn."
 
 # Setting up
 setup(
-    name="pippi",
+    name="pippi-lang",
     version=VERSION,
     author="Szymon Ruciński",
     description=DESCRIPTION,

@@ -1,0 +1,3 @@
+[tool.ruff.per-file-ignores]
+"pippi/__init__.py" = ["F401"]
+"setup.py" = ["E501"]

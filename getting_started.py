@@ -1,17 +1,15 @@
 import pandas as pd
-import nltk
-from sklearn.compose import ColumnTransformer
 from pippi.utils import download_dataset
 from sklearn.pipeline import Pipeline
 
 from pippi.text_cleaning import (
     TransformLettersSize,
     RemoveStopWords,
-    Lemmatize,
     RemovePunctuation,
     RemoveHTMLTags,
 )
-import coloredlogs, logging
+import coloredlogs
+import logging
 
 coloredlogs.install()
 logger = logging.getLogger("main.py")
