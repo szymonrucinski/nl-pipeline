@@ -17,7 +17,7 @@ jobs:
           python --version
           python -m pip install --upgrade pip
           python -m pip install pipenv
-          pipenv install
+          pipenv install -r requirements.txt
       - name: Test Code Style
         run: |
           ruff .
