@@ -1,6 +1,6 @@
+import nltk
 import coloredlogs
 import logging
-import nltk
 from nltk.corpus import stopwords
 from sklearn.base import BaseEstimator, TransformerMixin
 from nltk.stem import WordNetLemmatizer
