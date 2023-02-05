@@ -1,7 +1,7 @@
 import pandas as pd
 import nltk
 from sklearn.compose import ColumnTransformer
-from src.utils import download_dataset
+from pippi.utils import download_dataset
 from sklearn.pipeline import Pipeline
 
 from pippi.text_cleaning import (
