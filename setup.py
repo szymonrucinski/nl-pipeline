@@ -26,7 +26,7 @@ setup(
         "pandas",
         "coloredlogs",
         "spacy",
-        "en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.5.0/en_core_web_sm-3.5.0.tar.gz",
+        "$(spacy info en_core_web_sm --url)",
     ],
     keywords=["python", "stream", "sockets"],
     classifiers=[
