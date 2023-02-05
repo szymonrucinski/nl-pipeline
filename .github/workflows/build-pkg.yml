@@ -21,6 +21,9 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install pipenv
       - name: Build package
-        run: sh build_pkg.sh
+        run: |
+          sh build_pkg.sh
+          pipenv run pip install --upgrade build
+
       - name: Run getting_started.py
         run: pipenv run python getting_started.py 
