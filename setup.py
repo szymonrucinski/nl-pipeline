@@ -15,6 +15,7 @@ setup(
     name="pippi-lang",
     version=VERSION,
     author="Szymon Ruciński",
+    url="https://github.com/szymonrucinski/pippi-lang",
     description=DESCRIPTION,
     long_description_content_type="text/markdown",
     long_description=long_description,
