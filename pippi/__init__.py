@@ -1,4 +1,4 @@
-from src.text_cleaning import (
+from pippi.text_cleaning import (
     TransformLettersSize,
     RemoveStopWords,
     Lemmatize,
