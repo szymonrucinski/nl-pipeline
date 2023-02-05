@@ -1,9 +1,8 @@
-import pandas as pd
 import spacy
-import coloredlogs, logging
+import coloredlogs
+import logging
 import nltk
 from tqdm import tqdm
-from spacy.lang.en.examples import sentences
 from nltk.corpus import stopwords
 from sklearn.base import BaseEstimator, TransformerMixin
 
@@ -86,7 +85,8 @@ class RemoveHTMLTags(BaseEstimator, TransformerMixin):
 
 
 class RemovePunctuation(BaseEstimator, TransformerMixin):
-    """Remove unnecessary code, like log statements and unused variables. Leave the rest of the code the same."""
+    """Remove unnecessary code, like log statements and unused variables.
+    Leave the rest of the code the same."""
 
     def __init__(self, columns):
         self.columns = columns

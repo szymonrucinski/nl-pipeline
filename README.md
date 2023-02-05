@@ -9,7 +9,7 @@ Elegant data pipelines are a key component of any data science project. They all
 
 ``` python
 
-from text_cleaning import (
+from pippi import (
     TransformLettersSize,
     RemoveStopWords,
     Lemmatize,
