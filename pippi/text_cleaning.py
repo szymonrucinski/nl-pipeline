@@ -1,12 +1,13 @@
-import spacy
 import coloredlogs
 import logging
 import nltk
-from tqdm import tqdm
 from nltk.corpus import stopwords
 from sklearn.base import BaseEstimator, TransformerMixin
+from nltk.stem import WordNetLemmatizer
 
 nltk.download("stopwords")
+nltk.download("wordnet")
+
 coloredlogs.install()
 logger = logging.getLogger("text_cleaning.py")
 
@@ -53,7 +54,7 @@ class RemoveStopWords(BaseEstimator, TransformerMixin):
     def transform(self, X):
         logger.info("Removing stop words.")
         preproc_data = X.copy()
-        for column in tqdm(preproc_data):
+        for column in preproc_data[self.columns]:
             if preproc_data[column].dtype in ["object", "str"]:
                 preproc_data[column] = preproc_data[column].apply(
                     lambda words: " ".join(
@@ -122,22 +123,21 @@ class RemoveDigits(BaseEstimator, TransformerMixin):
 
 
 class Lemmatize(BaseEstimator, TransformerMixin):
-    def __init__(self, lemmatizer=spacy.load("en_core_web_sm")):
+    def __init__(self, columns, lemmatizer=WordNetLemmatizer()):
         self.lemmatizer = lemmatizer
-        logger.info("Lemmatizing text.")
+        self.columns = columns
+        logger.info("Starting lemmatization.")
 
     def fit(self, X, y=None):
         return self
 
     def transform(self, X):
         preproc_data = X.copy()
-        lemmatized_sentences = []
-        for column in preproc_data:
+        for column in self.columns:
             if preproc_data[column].dtype in ["object", "str"]:
-                for sentence in preproc_data[column].values:
-                    x = self.lemmatizer(sentence)
-                    list_of_strings = [i.text for i in x]
-                    x = " ".join(list_of_strings)
-                    lemmatized_sentences.append(x)
-                preproc_data[column] = lemmatized_sentences
+                preproc_data[column] = preproc_data[column].apply(
+                    lambda sentence: " ".join(
+                        [self.lemmatizer.lemmatize(w) for w in sentence.split(" ")]
+                    )
+                )
         return preproc_data

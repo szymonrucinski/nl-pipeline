@@ -21,12 +21,9 @@ setup(
     packages=find_packages(),
     install_requires=[
         "scikit-learn",
-        "spacy",
         "nltk",
         "pandas",
         "coloredlogs",
-        "spacy",
-        "$(spacy info en_core_web_sm --url)",
     ],
     keywords=["python", "stream", "sockets"],
     classifiers=[
