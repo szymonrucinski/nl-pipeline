@@ -1,9 +1,13 @@
-import coloredlogs
+"""This module contains functions for text cleaning."""
 import logging
+import unicodedata
+
+import coloredlogs
 import nltk
+import pandas as pd
 from nltk.corpus import stopwords
-from sklearn.base import BaseEstimator, TransformerMixin
 from nltk.stem import WordNetLemmatizer
+from sklearn.base import BaseEstimator, TransformerMixin
 
 nltk.download("stopwords")
 nltk.download("wordnet")
@@ -58,9 +62,7 @@ class RemoveStopWords(BaseEstimator, TransformerMixin):
             if preproc_data[column].dtype in ["object", "str"]:
                 preproc_data[column] = preproc_data[column].apply(
                     lambda words: " ".join(
-                        word.lower()
-                        for word in words.split()
-                        if word.lower() not in self.stop_words
+                        word.lower() for word in words.split() if word.lower() not in self.stop_words
                     )
                 )
         return preproc_data
@@ -99,9 +101,7 @@ class RemovePunctuation(BaseEstimator, TransformerMixin):
         preproc_data = X.copy()
         for column in preproc_data[self.columns]:
             if preproc_data[column].dtype in ["object", "str"]:
-                preproc_data[column] = preproc_data[column].str.replace(
-                    r"[^A-Za-z ]+", "", regex=True
-                )
+                preproc_data[column] = preproc_data[column].str.replace(r"[^A-Za-z ]+", "", regex=True)
         return preproc_data
 
 
@@ -116,9 +116,7 @@ class RemoveDigits(BaseEstimator, TransformerMixin):
 
     def transform(self, X):
         preproc_data = X.copy()
-        preproc_data.MarketingDescription_DE = (
-            preproc_data.MarketingDescription_DE.str.replace("\d+", "")
-        )
+        preproc_data.MarketingDescription_DE = preproc_data.MarketingDescription_DE.str.replace("\d+", "")
         return preproc_data
 
 
@@ -136,8 +134,67 @@ class Lemmatize(BaseEstimator, TransformerMixin):
         for column in self.columns:
             if preproc_data[column].dtype in ["object", "str"]:
                 preproc_data[column] = preproc_data[column].apply(
-                    lambda sentence: " ".join(
-                        [self.lemmatizer.lemmatize(w) for w in sentence.split(" ")]
-                    )
+                    lambda sentence: " ".join([self.lemmatizer.lemmatize(w) for w in sentence.split(" ")])
                 )
         return preproc_data
+
+
+class RemoveMultipleSpaces(BaseEstimator, TransformerMixin):
+    """Converts all letters to upper case or lower case."""
+
+    def __init__(self, columns):
+        self.columns = columns
+        logger.info("Removing multiple spaces.")
+
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X) -> pd.DataFrame:
+        data = X.copy()
+        preproc_data = X.copy()
+        for column_str in preproc_data[self.columns]:
+            if preproc_data[column_str].dtype in ["object", "str"]:
+                preproc_data[column_str] = data[column_str].apply(lambda x: re.sub("\s{2,}", " ", x))
+        return preproc_data
+
+
+class RemoveAccentedChars(BaseEstimator, TransformerMixin):
+    """Converts all letters to upper case or lower case."""
+
+    def __init__(self, columns):
+        self.columns = columns
+        logger.info("Removing multiple spaces.")
+
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X) -> pd.DataFrame:
+        preproc_data = X.copy()
+        for column_str in preproc_data[self.columns]:
+            if preproc_data[column_str].dtype in ["object", "str"]:
+                for w in preproc_data["art_desc"]:
+                    try:
+                        unicodedata.normalize("NFKD", w).encode("ascii", "ignore").decode("utf-8", "ignore")
+                    except TypeError:
+                        pass
+            return preproc_data
+
+
+class ReplaceString(BaseEstimator, TransformerMixin):
+    """Converts all letters to upper case or lower case."""
+
+    def __init__(self, word, replacement, columns):
+        self.word = word
+        self.replacement = replacement
+        self.columns = columns
+        logger.info("Removing multiple spaces.")
+
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X) -> pd.DataFrame:
+        preproc_data = X.copy()
+        for column_str in preproc_data[self.columns]:
+            if preproc_data[column_str].dtype in ["object", "str"]:
+                preproc_data[column_str] = preproc_data[column_str].str.replace(self.word, self.replacement)
+            return preproc_data
