@@ -6,9 +6,11 @@ import coloredlogs
 import nltk
 import pandas as pd
 from bs4 import BeautifulSoup
+
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from sklearn.base import BaseEstimator, TransformerMixin
+from nltk.stem import WordNetLemmatizer
 
 nltk.download("stopwords")
 nltk.download("wordnet")
