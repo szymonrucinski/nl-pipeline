@@ -1,0 +1,27 @@
+name: run-tests
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.9"
+      - name: Install dependencies
+        run: |
+          python --version
+          python -m pip install --upgrade pip
+          python -m pip install pipenv
+      - name: Build package
+        run: |
+          pipenv install -r requirements.txt
+          sh build_pkg.sh
+          pipenv run pip install --upgrade build
+
+      - name: Run tests
+        run: pipenv run pytest .
