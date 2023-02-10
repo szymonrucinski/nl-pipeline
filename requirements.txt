@@ -25,7 +25,6 @@ decorator==5.1.1
 defusedxml==0.7.1
 dill==0.3.6
 docutils==0.19
-en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.5.0/en_core_web_sm-3.5.0-py3-none-any.whl
 exceptiongroup==1.1.0
 executing==1.2.0
 fastjsonschema==2.16.2
@@ -85,8 +84,6 @@ pathspec==0.11.0
 pathy==0.10.1
 pexpect==4.8.0
 pickleshare==0.7.5
-pippi @ file:///Users/szymon/Desktop/nlpipe/dist/pippi-0.0.1-py3-none-any.whl
--e git+https://github.com/szymonrucinski/nl-pipeline.git@2a47f44f0706a02336ecf6ff099e175fcefb2dcc#egg=pippi_lang
 pkginfo==1.9.6
 platformdirs==2.6.2
 pluggy==1.0.0
