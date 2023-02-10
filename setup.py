@@ -1,6 +1,7 @@
-from setuptools import setup, find_packages
 import codecs
 import os
+
+from setuptools import find_packages, setup
 
 here = os.path.abspath(os.path.dirname(__file__))
 
@@ -25,6 +26,8 @@ setup(
         "nltk",
         "pandas",
         "coloredlogs",
+        "beautifulsoup4",
+        "lxml",
     ],
     keywords=["python", "stream", "sockets"],
     classifiers=[

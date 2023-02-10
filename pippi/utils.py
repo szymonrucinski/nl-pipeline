@@ -1,6 +1,8 @@
+"""utils.py contains all the utility functions used in pippi."""
+import os
+
 import pandas as pd
 import requests
-import os
 
 
 def download_dataset() -> pd.DataFrame:
@@ -11,7 +13,7 @@ def download_dataset() -> pd.DataFrame:
         "https://raw.githubusercontent.com/SK7here/"
         + "Movie-Review-Sentiment-Analysis/master/IMDB-Dataset.csv"
     )
-    dataset = requests.get(url, allow_redirects=True)
+    dataset = requests.get(url, allow_redirects=True, timeout=5)
     open("dataset.csv", "wb").write(dataset.content)
     df = pd.read_csv("dataset.csv")
     return df
