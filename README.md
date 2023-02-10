@@ -1,5 +1,7 @@
-## Text cleaning Pipeline
+# Text cleaning Pipeline 
 
+[![Build package](https://github.com/szymonrucinski/pippi-lang/actions/workflows/build-pkg.yml/badge.svg)](https://github.com/szymonrucinski/pippi-lang/actions/workflows/build-pkg.yml) [![Check style](https://github.com/szymonrucinski/pippi-lang/actions/workflows/check-style.yml/badge.svg)](https://github.com/szymonrucinski/pippi-lang/actions/workflows/check-style.yml)[![Run Tests](https://github.com/szymonrucinski/pippi-lang/actions/workflows/run-tests.yml/badge.svg)](https://github.com/szymonrucinski/pippi-lang/actions/workflows/run-tests.yml)
+___
 ## Description
 This code contains a pipeline for pre-processing text data for sentiment analysis. It includes steps for removing stop words, HTML tags, changing letter size, and removing punctuation.
 *Future code will include text-transformations like word-embedding and word-vectorization.*
