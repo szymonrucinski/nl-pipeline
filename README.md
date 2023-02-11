@@ -6,6 +6,11 @@ ___
 This code contains a pipeline for pre-processing text data for sentiment analysis. It includes steps for removing stop words, HTML tags, changing letter size, and removing punctuation.
 *Future code will include text-transformations like word-embedding and word-vectorization.*
 
+To install [this package](https://pypi.org/project/pippi-lang/) simply run:
+``` bash
+pip install pippi-lang
+``` 
+
 ### Example
 Elegant data pipelines are a key component of any data science project. They allow you to automate the process of cleaning, transforming, and analyzing data. This code is a simple example of how to create a pipeline for text data using cutom transformers and the sklearn Pipeline class.
 
